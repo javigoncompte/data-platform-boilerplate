@@ -28,3 +28,6 @@ allow-direct-references = true
 venvPath = "."          # uv installs the venv in the current dir
 venv = ".venv"          #       in a folder called `.venv`
 strict = ["**/*.py"]    # use 'strict' checking on all files
+
+[tool.uv.sources]
+client = {path = "data_platform", editable = true}

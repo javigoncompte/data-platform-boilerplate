@@ -6,9 +6,14 @@
 - hatch
 
 ## Layout
+``` bash
+➜ tree .
 .
 ├── LICENSE
 ├── README.md
+├── dist
+│   ├── albatross-0.1.0-py3-none-any.whl
+│   └── albatross-0.1.0.tar.gz
 ├── libraries
 │   ├── client
 │   │   ├── README.md
@@ -57,7 +62,7 @@
 ├── projects_machine_learning
 ├── pyproject.toml
 └── uv.lock
-
+```
 ## Understanding Layout
 
 ### Libraries
