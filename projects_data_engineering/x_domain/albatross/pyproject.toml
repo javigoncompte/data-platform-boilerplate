@@ -1,0 +1,35 @@
+[project]
+name = "albatross"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "jcompte", email = "jcompte@inspirato.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "client",
+]
+dynamic = ["una"]  # needed for hatch-una metadata hook to work
+
+[project.scripts]
+albatross = "albatross:main"
+
+[build-system]
+requires = ["hatchling", "hatch-una>=0.5.1"]
+build-backend = "hatchling.build"
+
+
+[tool.uv.sources]
+client = { workspace = true }
+[tool.hatch.build.hooks.una-build]
+[tool.hatch.metadata.hooks.una-meta]
+[tool.hatch.metadata]
+allow-direct-references = true
+[tool.pyright]
+venvPath = "."          # uv installs the venv in the current dir
+venv = ".venv"          #       in a folder called `.venv`
+strict = ["**/*.py"]    # use 'strict' checking on all files
+
+[tool.hatch.build.target.wheel]
+packages = ["data_platform"]
