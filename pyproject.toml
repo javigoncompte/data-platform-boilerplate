@@ -70,7 +70,10 @@ preview = true
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 select = ["I", "E", "F", "B"]
 preview = true
-
+[tool.pytest.ini_options]
+pythonpath = ["projects_data_engineering/*", "libs/*"]
+testpaths = ["projects_data_engineering/*", "libs/*"]
+addopts = ""
 extend-select = [
 
     # "PLC0103",  # invalid-name

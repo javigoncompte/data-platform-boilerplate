@@ -12,54 +12,56 @@
 ├── LICENSE
 ├── README.md
 ├── dist
-│   ├── albatross-0.1.0-py3-none-any.whl
-│   └── albatross-0.1.0.tar.gz
-├── libraries
+├── libs
 │   ├── client
 │   │   ├── README.md
-│   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── client
-│   │           ├── __init__.py
-│   │           └── py.typed
+│   │   ├── data_platform
+│   │   │   └── client
+│   │   │       ├── __init__.py
+│   │   │       └── py.typed
+│   │   └── pyproject.toml
 │   ├── connection
 │   │   ├── README.md
-│   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── connection
-│   │           ├── __init__.py
-│   │           └── py.typed
+│   │   ├── data_platform
+│   │   │   └── connection
+│   │   │       ├── __init__.py
+│   │   │       └── py.typed
+│   │   └── pyproject.toml
 │   ├── ingestion
 │   │   ├── README.md
-│   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── ingestion
-│   │           ├── __init__.py
-│   │           └── py.typed
+│   │   ├── data_platform
+│   │   │   └── ingestion
+│   │   │       ├── __init__.py
+│   │   │       └── py.typed
+│   │   └── pyproject.toml
 │   ├── interfaces
 │   │   ├── README.md
-│   │   ├── pyproject.toml
-│   │   └── src
-│   │       └── interfaces
-│   │           ├── __init__.py
-│   │           └── py.typed
+│   │   ├── data_platform
+│   │   │   └── interfaces
+│   │   │       ├── __init__.py
+│   │   │       └── py.typed
+│   │   └── pyproject.toml
 │   └── transformations
 │       ├── README.md
-│       ├── pyproject.toml
-│       └── src
-│           └── transformations
-│               ├── __init__.py
-│               └── py.typed
+│       ├── data_platform
+│       │   └── transformations
+│       │       ├── __init__.py
+│       │       └── py.typed
+│       └── pyproject.toml
 ├── projects_data_engineering
 │   └── x_domain
-│       └── albatross
-│           ├── README.md
+│       └── albatros
+│           ├── data_platform
+│           │   ├── albatros
+│           │   │   ├── __init__.py
+│           │   │   └── py.typed
+│           │   └── py.typed
+│           ├── dist
+│           │   ├── albatros-0.1.0-py3-none-any.whl
+│           │   └── albatros-0.1.0.tar.gz
 │           ├── pyproject.toml
-│           └── src
-│               └── albatross
-│                   └── __init__.py
-├── projects_llm_ai
-├── projects_machine_learning
+│           └── tests
+│               └── test_albatros_import.py
 ├── pyproject.toml
 └── uv.lock
 ```
@@ -68,7 +70,8 @@
 ### Libraries
 
 * libraries setting up libs that are going to be used by other projects or packages these are initialized using uv
-    - uv init --lib
+    - uv run una create package client libs/
+    - or copy paste client
 
 ### Projects_*
 
@@ -79,9 +82,12 @@
 * If using domains such as product/sales
     1. Go to project create a folder of the domain name ex: x_domain
     2. Create the package folder name ex: albatross
-    3. uv init --package
+    3. uv run una create package albatros projects_data_engineering/x_domain/
 
 * If not using a domain and instead directly just package names
     1. Go to a project
     2. create folder name of package name
-    3. uv init --package
+    3. uv run una create package albatros projects_data_engineering/
+
+* We are using uv una to handle the wheel building using external libs since uv worskpaces doesn't support for the moment
+https://una.rdrn.me/quickstart/
