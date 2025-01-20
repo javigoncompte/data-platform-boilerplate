@@ -4,20 +4,26 @@ name = "data_platform"
 version = "0.0.0"
 requires-python = "~=3.11"
 dependencies = []
-[tool.uv.workspace]
-members = ["libraries/client", "libraries/connection", "libraries/ingestion", "libraries/interfaces", "libraries/transformations", "projects_data_engineering/x_domain/albatross"]
 
+[tool.uv]
+package = false
+[tool.uv.workspace]
+members = ["projects_data_engineering/x_domain/albatross", "libs/client"]
+[tool.una]
+namespace = "data_platform"
+requires-python = "~=3.11"
 [dependency-groups]
 dev = [
     "ruff==0.6.9",
     "polars~=1.12.0",
     "pre-commit~=4.0.1",
     "pyright>=1.1.391",
+    "una>=0.5.2",
 ]
 [tool.pyright]
-venvPath = "."          # uv installs the venv in the current dir
-venv = ".venv"          #       in a folder called `.venv`
-strict = ["**/*.py"]    # use 'strict' checking on all files
+venvPath = "."       # uv installs the venv in the current dir
+venv = ".venv"       #       in a folder called `.venv`
+strict = ["**/*.py"] # use 'strict' checking on all files
 [tool.ruff]
 fix = true
 show-fixes = true
@@ -60,7 +66,6 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
 preview = true
-
 [tool.ruff.lint]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 select = ["I", "E", "F", "B"]
