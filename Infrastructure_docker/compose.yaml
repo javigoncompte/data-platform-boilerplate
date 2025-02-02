@@ -6,11 +6,17 @@ services:
       context: ./iceberg
       dockerfile: Dockerfile
     ports:
-      - "4040:4040"  # Spark UI
+      - "127.0.0.1:4040:4040"  # Restrict to localhost
     volumes:
-      - ./data:/data
+      - type: bind
+        source: ./data
+        target: /data
+        read_only: true  # Make data read-only
     environment:
       - SPARK_LOCAL_IP=iceberg
+    security_opt:
+      - no-new-privileges:true
+    user: iceberg
 
   delta:
     build:
@@ -57,4 +63,9 @@ services:
           memory: 4G
 
 volumes:
-  data: 
+  data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data 
