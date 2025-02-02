@@ -18,7 +18,7 @@ include:
 artifacts:
   {{ .input_src_name }}:
     type: whl
-    build: bazelisk build {{ .input_src_name }} && mkdir dist && cp  ../../../../../bazel-bin/src/{{ .destination_directory }}/{{ .input_project_name }}_proj/{{ .input_src_name }}_src/{{ .input_src_name }}/{{ .input_src_name }}-${var.RELEASE_VERSION}-py3-none-any.whll dist/
+    build:
 
 # Deployment Target specific values for workspace
 targets:
