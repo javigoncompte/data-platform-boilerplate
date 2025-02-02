@@ -1,0 +1,33 @@
+# define template variables
+{{ define `root_dir` -}}
+    ./{{ .input_project_domain }}/{{ .input_python_package_name }}
+{{- end }}
+
+{{ define `databricks_prod_workspace_host` -}}
+{{- end }}
+
+{{ define `databricks_staging_workspace_host` -}}
+{{- end }}
+
+{{ define `databricks_test_workspace_host` -}}
+{{- end }}
+
+{{ define `cloud_specific_node_type_id` -}}
+{{- end -}}
+
+{{ define `project_name_alphanumeric_underscore` -}}
+    {{- (regexp `-`).ReplaceAllString ((regexp `[^A-Za-z0-9_-]`).ReplaceAllString (print .input_python_package_name) ``) `_` -}}
+{{- end }}
+
+
+{{ define `cloud` -}}
+{{- end }}
+
+{{ define `project_type` -}}
+   {{ .input_project_type }}
+{{- end }}
+
+{{ define `default branch` -}}
+    main
+{{- end }}
+

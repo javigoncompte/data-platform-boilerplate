@@ -1,14 +1,14 @@
 [project]
-name = "albatros"
+name = "{{template `project_name_alphanumeric_underscore` .}}"
 version = "0.1.0"
-description = ""
-authors = []
-dependencies = ["client"]
+description = "{{template `project_name_alphanumeric_underscore` .}} project"
+dependencies = []
 requires-python = "~=3.11"
-dynamic = ["una"]          # needed for hatch-una metadata hook to work
+dynamic = ["una"]  
 
 [tool.uv.sources]
-client = { workspace = true }
+# client = { workspace = true }
+
 [build-system]
 requires = ["hatchling", "hatch-una"]
 build-backend = "hatchling.build"
@@ -22,4 +22,4 @@ allow-direct-references = true
 [tool.pyright]
 venvPath = "../.."
 venv = ".venv"
-basic = ["**/*.py"]
+basic = ["**/*.py"]]

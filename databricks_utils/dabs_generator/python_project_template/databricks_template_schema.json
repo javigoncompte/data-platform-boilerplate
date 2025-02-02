@@ -1,0 +1,41 @@
+{
+  "welcome_message": "Welcome to Python Project. For detailed information on project generation, see the README at https://github.com/databricks/mlops-stacks/blob/main/README.md.",
+  "min_databricks_cli_version": "v0.221.0",
+  "properties": {
+    "input_project_domain": {
+      "order": 1,
+      "type": "string",
+      "default": "project",
+      "description": "\nProject domain. Default  x_domain  if using or just name of python package example",
+      "pattern": "^[^ .\\\\/]{3,}$",
+      "pattern_match_failure_message": "Project domain must be at least 3 characters long and cannot contain the following characters: \"\\\", \"/\", \" \" and \".\"."
+    },
+    "input_python_package_name": {
+      "order": 2,
+      "type": "string",
+      "default": "project",
+      "description": "\nProject python package name. Same name as project name or different this si the name of the app/wheel/library that you want to reference in your imports etc.",
+      "pattern": "^[^ .\\\\/]{3,}$",
+      "pattern_match_failure_message": "Project python package name must be at least 3 characters long and cannot contain the following characters: \"\\\", \"/\", \" \" and \".\"."
+    },
+    "input_project_type": {
+      "order": 3,
+      "type": "string",
+      "description": "type of  project",
+      "default": "non-databricks",
+      "enum": ["non-databricks", "databricks"]
+    },
+    "destination_directory": {
+      "order": 4,
+      "type": "string",
+      "description": "Destination directory",
+      "default": "projects",
+      "enum": [
+        "projects_data_engineering",
+        "projects_llm_ai",
+        "projects_machine_learning"
+      ]
+    }
+  },
+  "success_message": "\n*** Your Python Project has been created in the '{{template `root_dir` .}}."
+}

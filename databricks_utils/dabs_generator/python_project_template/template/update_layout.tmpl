@@ -1,0 +1,20 @@
+# Remove unrelated CICD platform files.
+{{ $project_name_alphanumeric_underscore := (regexp `-`).ReplaceAllString ((regexp `[^A-Za-z0-9_-]`).ReplaceAllString .input_src_name ``) `_` -}}
+{{ $root_dir := "{{template `root_dir` .}}" }}
+{{if (eq .cloud `azure`) }}
+    {{ skip (printf `%s/%s` $root_dir `.github`) }}
+{{else if (eq .cloud `aws`) }}
+    {{ skip (printf `%s/%s` $root_dir `.azure`) }}
+{{ end }}
+
+# Remove utils if using Models in Unity Catalog
+
+{{ skip (printf `%s/%s/%s` $root_dir $project_name_alphanumeric_underscore `utils.py`) }}
+# Remove databricks files if not using databricks
+{{ if (eq .input_project_type `non-databricks`) }}
+    {{ skip (printf `%s/%s/%s` $root_dir $project_name_alphanumeric_underscore `databricks.yaml`) }}
+    {{ skip (printf `%s/%s/%s` $root_dir $project_name_alphanumeric_underscore `resources`) }}
+{{ end }}
+# Remove template files
+{{ skip `update_layout` }}
+{{ skip `run_validations` }}
