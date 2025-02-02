@@ -4,32 +4,7 @@ variables:
   databricks_principal:
     description: Principal of Databricks Job owner
     default: ""
-  environment:
-    description: environment of workspace
-  key_vault_name:
-    description: keyvault
-  AZURE_TENANT_ID:
-    description: azure tenant id
-  AZURE_CLIENT_ID:
-    description: azure client id
-  AZURE_CLIENT_SECRET:
-    description: azure client secret
-  INFRASTRUCTURE_MONITOR_API_KEY:
-    description: INFRASTRUCTURE_MONITOR_API_KEY
-  email_notification:
-    description: email notification for job failures
-    default: test@inspirato.com
-  fs_azure_account_oauth2_client_secret:
-    description: fs azure oauth2 client secret
-  instance_pool_id:
-    lookup:
-      instance_pool: "Standard_DS4_v2_4_idle_16_nodes"
-  BUILD_TAG:
-    description: BUILD TAG NUMBER
-    default: {{ .input_src_name }}
-  RELEASE_VERSION:
-    description: Release Version
-    default: 1
+
 workspace:
   root_path: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/my-envs/${bundle.target}
 
@@ -52,60 +27,31 @@ targets:
     default: true
     variables:
       environment: test-env
-      key_vault_name: kv-data-platform-test
-      AZURE_TENANT_ID: "{{"{{"}}secrets/kv-data-platform-test/azureTenantId{{"}}"}}"
-      AZURE_CLIENT_ID: "{{"{{"}}secrets/kv-data-platform-test/azureClientId{{"}}"}}"
-      AZURE_CLIENT_SECRET: "{{"{{"}}secrets/kv-data-platform-test/azureClientSecret{{"}}"}}"
-      INFRASTRUCTURE_MONITOR_API_KEY: "{{"{{"}}secrets/kv-data-platform-test/infrastructureMonitorApiKey{{"}}"}}"
-      fs_azure_account_oauth2_client_secret:  "{{"{{"}}secrets/kv-data-platform-test/azureClientSecret{{"}}"}}"
     workspace:
-      host: https://adb-2707707152410749.9.azuredatabricks.net
+      host: 
     artifacts:
       {{ .input_src_name }}:
         type: whl
-        build: bazel build {{ .input_src_name }}  && mkdir dist && cp  ../../../../../bazel-bin/src/{{ .destination_directory }}/{{ .input_project_name }}_proj/{{ .input_src_name }}_src/{{ .input_src_name }}/{{ .input_src_name }}-${var.RELEASE_VERSION}-py3-none-any.whl dist/
   test:
     variables:
-      databricks_principal: e0a22eac-66fe-4f80-864f-f759fa6a5ddf
       environment: test-env
-      key_vault_name: kv-data-platform-test
-      AZURE_TENANT_ID: "{{"{{"}}secrets/kv-data-platform-test/azureTenantId{{"}}"}}"
-      AZURE_CLIENT_ID: "{{"{{"}}secrets/kv-data-platform-test/azureClientId{{"}}"}}"
-      AZURE_CLIENT_SECRET: "{{"{{"}}secrets/kv-data-platform-test/azureClientSecret{{"}}"}}"
-      INFRASTRUCTURE_MONITOR_API_KEY: "{{"{{"}}secrets/kv-data-platform-test/infrastructureMonitorApiKey{{"}}"}}"
-      fs_azure_account_oauth2_client_secret: "{{"{{"}}secrets/kv-data-platform-test/azureClientSecret{{"}}"}}"
     workspace:
-      host: https://adb-2707707152410749.9.azuredatabricks.net
+      host: 
   qa:
     git:
       branch: main
     variables:
-      databricks_principal: 86ae41ea-6ee2-4809-8bfb-ac50689bda1f
       environment: qa-env
-      key_vault_name: kv-data-platform-qa
-      AZURE_TENANT_ID: "{{"{{"}}secrets/kv-data-platform-qa/azureTenantId{{"}}"}}"
-      AZURE_CLIENT_ID: "{{"{{"}}secrets/kv-data-platform-qa/azureClientId{{"}}"}}"
-      AZURE_CLIENT_SECRET: "{{"{{"}}secrets/kv-data-platform-qa/azureClientSecret{{"}}"}}"
-      INFRASTRUCTURE_MONITOR_API_KEY: "{{"{{"}}secrets/kv-data-platform-qa/infrastructureMonitorApiKey{{"}}"}}"
-      fs_azure_account_oauth2_client_secret: "{{"{{"}}secrets/kv-data-platform-qa/azureClientSecret{{"}}"}}"
     workspace:
-      host: https://adb-1477701841953214.14.azuredatabricks.net
-    run_as:
-      service_principal_name: "86ae41ea-6ee2-4809-8bfb-ac50689bda1f"
+      host: 
   prod:
     mode: production
     git:
       branch: main
     variables:
-      email_notification: event-6cvchih4@dtdg.co
-      databricks_principal: 26cad05d-5540-46ef-8f0a-fcc48675505f
       environment: prod-env
-      key_vault_name: kv-data-platform-prod
-      AZURE_TENANT_ID: "{{"{{"}}secrets/kv-data-platform-prod/azureTenantId{{"}}"}}"
-      AZURE_CLIENT_ID: "{{"{{"}}secrets/kv-data-platform-prod/azureClientId{{"}}"}}"
-      AZURE_CLIENT_SECRET: "{{"{{"}}secrets/kv-data-platform-prod/azureClientSecret{{"}}"}}"
-      INFRASTRUCTURE_MONITOR_API_KEY: "{{"{{"}}secrets/kv-data-platform-prod/infrastructureMonitorApiKey{{"}}"}}"
-      fs_azure_account_oauth2_client_secret: "{{"{{"}}secrets/kv-data-platform-prod/azureClientSecret{{"}}"}}"
+    workspace:
+      host: 
     workspace:
       host: https://adb-8131518869320383.3.azuredatabricks.net
     run_as:
