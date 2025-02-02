@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  iceberg:
+    build:
+      context: ./iceberg
+      dockerfile: Dockerfile
+    ports:
+      - "4040:4040"  # Spark UI
+    volumes:
+      - ./data:/data
+    environment:
+      - SPARK_LOCAL_IP=iceberg
+
+  delta:
+    build:
+      context: ./delta
+      dockerfile: Dockerfile
+    ports:
+      - "4041:4040"  # Spark UI
+    volumes:
+      - ./data:/data
+    environment:
+      - SPARK_LOCAL_IP=delta
+
+  ray:
+    build:
+      context: ./ray
+      dockerfile: Dockerfile
+    ports:
+      - "8265:8265"  # Ray Dashboard
+      - "10001:10001"  # Ray Client
+      - "6379:6379"   # Redis
+    volumes:
+      - ./data:/data
+    environment:
+      - RAY_ADDRESS=ray:6379
+
+  pyspark:
+    build:
+      context: ./pyspark
+      dockerfile: Dockerfile
+    ports:
+      - "4042:4040"  # Spark UI
+      - "8888:8888"  # Jupyter Lab
+    volumes:
+      - ./data:/data
+      - ./notebooks:/opt/spark/work-dir/notebooks
+    environment:
+      - SPARK_LOCAL_IP=pyspark
+      - SPARK_DRIVER_HOST=pyspark
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G
+
+volumes:
+  data: 
