@@ -8,10 +8,11 @@ dependencies = []
 [tool.uv]
 package = false
 [tool.uv.workspace]
-members = ["projects_data_engineering/x_domain/albatross", "libs/client"]
+members = ["projects_data_engineering/x_domain/albatros", "libs/client"]
 [tool.una]
 namespace = "data_platform"
 requires-python = "~=3.11"
+
 [dependency-groups]
 dev = [
     "ruff==0.6.9",

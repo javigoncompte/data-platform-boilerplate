@@ -1,11 +1,24 @@
 version = 1
+revision = 1
 requires-python = ">=3.11, <4"
 
 [manifest]
 members = [
+    "albatros",
     "client",
     "data-platform",
 ]
+
+[[package]]
+name = "albatros"
+version = "0.1.0"
+source = { editable = "projects_data_engineering/x_domain/albatros" }
+dependencies = [
+    { name = "client" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "client", editable = "libs/client" }]
 
 [[package]]
 name = "certifi"
