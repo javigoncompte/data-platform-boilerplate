@@ -20,18 +20,21 @@ dev = [
     "pre-commit~=4.0.1",
     "pyright>=1.1.391",
     "una>=0.5.2",
+    "basedpyright>=1.28.1",
 ]
-[tool.pyright]
-venvPath = "."       # uv installs the venv in the current dir
-venv = ".venv"       #       in a folder called `.venv`
-strict = ["**/*.py"] # use 'strict' checking on all files
+
+[tool.basedpyright]
+include = ["**/*.py"]
+typeCheckingMode = "basic"
 [tool.ruff]
 fix = true
 show-fixes = true
 line-length = 80
 indent-width = 4
+
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
 [tool.ruff.format]
 docstring-code-format = true
 docstring-code-line-length = 20
