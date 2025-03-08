@@ -6,9 +6,13 @@ authors = []
 dependencies = ["client"]
 requires-python = "~=3.11"
 dynamic = ["una"]          # needed for hatch-una metadata hook to work
+[dependency-groups]
+dev = []
 
 [tool.uv.sources]
-client = { workspace = true }
+
+[tool.uv.sources.client]
+workspace = true
 [build-system]
 requires = ["hatchling", "hatch-una"]
 build-backend = "hatchling.build"
@@ -18,8 +22,3 @@ allow-direct-references = true
 
 [tool.hatch.build.hooks.una-build]
 [tool.hatch.metadata.hooks.una-meta]
-
-[tool.pyright]
-venvPath = "../.."
-venv = ".venv"
-basic = ["**/*.py"]

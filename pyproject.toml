@@ -8,7 +8,7 @@ dependencies = []
 [tool.uv]
 package = false
 [tool.uv.workspace]
-members = ["projects_data_engineering/x_domain/albatros", "libs/client"]
+members = ["projects_data_engineering/x_domain/*", "libs/*"]
 [tool.una]
 namespace = "data_platform"
 requires-python = "~=3.11"
@@ -19,7 +19,7 @@ dev = [
     "polars~=1.12.0",
     "pre-commit~=4.0.1",
     "pyright>=1.1.391",
-    "una>=0.5.2",
+    "una~=0.6.1",
     "basedpyright>=1.28.1",
 ]
 

@@ -6,7 +6,11 @@ requires-python = ">=3.11, <4"
 members = [
     "albatros",
     "client",
+    "connection",
     "data-platform",
+    "ingestion",
+    "interfaces",
+    "transformations",
 ]
 
 [[package]]
@@ -19,6 +23,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "client", editable = "libs/client" }]
+
+[package.metadata.requires-dev]
+dev = []
 
 [[package]]
 name = "basedpyright"
@@ -121,6 +128,9 @@ dependencies = [
 [package.metadata]
 requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
 
+[package.metadata.requires-dev]
+dev = []
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -129,6 +139,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335 },
 ]
+
+[[package]]
+name = "connection"
+version = "0.1.0"
+source = { editable = "libs/connection" }
 
 [[package]]
 name = "data-platform"
@@ -154,7 +169,7 @@ dev = [
     { name = "pre-commit", specifier = "~=4.0.1" },
     { name = "pyright", specifier = ">=1.1.391" },
     { name = "ruff", specifier = "==0.6.9" },
-    { name = "una", specifier = ">=0.5.2" },
+    { name = "una", specifier = "~=0.6.1" },
 ]
 
 [[package]]
@@ -205,6 +220,28 @@ sdist = { url = "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442 },
 ]
+
+[[package]]
+name = "ingestion"
+version = "0.1.0"
+source = { editable = "libs/ingestion" }
+dependencies = [
+    { name = "requests" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
+
+[[package]]
+name = "interfaces"
+version = "0.1.0"
+source = { editable = "libs/interfaces" }
+dependencies = [
+    { name = "requests" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
 
 [[package]]
 name = "markdown-it-py"
@@ -449,6 +486,17 @@ wheels = [
 ]
 
 [[package]]
+name = "transformations"
+version = "0.1.0"
+source = { editable = "libs/transformations" }
+dependencies = [
+    { name = "requests" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
+
+[[package]]
 name = "typer"
 version = "0.15.1"
 source = { registry = "https://pypi.org/simple" }
@@ -487,7 +535,7 @@ wheels = [
 
 [[package]]
 name = "una"
-version = "0.5.2"
+version = "0.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dataclasses-json" },
@@ -495,9 +543,9 @@ dependencies = [
     { name = "tomlkit" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/2c/34135a278bdd030d691cb6e20e5b541d21bd953ed8bb9aaa4d9d65f32276/una-0.5.2.tar.gz", hash = "sha256:20b4843fdf415dded53d62d2bccd848ba54d7e351f149974d1fca627f363fdf3", size = 12417 }
+sdist = { url = "https://files.pythonhosted.org/packages/54/1a/2a2952c3c81706809ca1bbf9fcd7131040ff3c722d32f22e533c71113bbf/una-0.6.1.tar.gz", hash = "sha256:8e3191a926d48dac41d785f553118a5bfd90d4d104f78abc614d36f401244a22", size = 12578 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/4b/ce430013f46d1b954bb3aa35f5c79f0be32602b584025f5783602ca23ec9/una-0.5.2-py3-none-any.whl", hash = "sha256:92f9bdc63c1b4368467401b54995ffa9ae629a5db5f426caf0957bc6e1d68c77", size = 16024 },
+    { url = "https://files.pythonhosted.org/packages/20/65/24b917328265926636c39ac7dab2db87a12338376495d790a284b4d6826b/una-0.6.1-py3-none-any.whl", hash = "sha256:36b333255ea4fbae4839a52ee7ec92df87f49e9ce8d9b59df9d2d52ec8e31dd1", size = 16268 },
 ]
 
 [[package]]
