@@ -1,7 +1,7 @@
 # Boilerplate Monorepo for Data Platforms
 
 ## Requirements
-- uv 
+- uv
 - ruff
 - hatch
 
@@ -91,3 +91,13 @@
 
 * We are using uv una to handle the wheel building using external libs since uv worskpaces doesn't support for the moment
 https://una.rdrn.me/quickstart/
+
+
+```
+uv sync --all-packages --dev
+uv run --directory projects_data_engineering/x_domain/albatros/ una sync
+uvx --from build pyproject-build --installer=uv --outdir=dist --wheel projects_data_engineering/x_domain/albatros
+uv venv # clear venv
+uv pip install dist/albatros-0.1.0-py3-none-any.whl
+uv pip list
+```
